@@ -23,7 +23,7 @@ const userLogin =async(req,res)=>{
    if(user.password!=password){
     res.send("Invalid password");
    }
-    res.status(202).send({msg:"you are successfull login"})
+    res.status(202).send({msg:"you are successfull login",user});
 
     console.log(user);
     res.send("okk");

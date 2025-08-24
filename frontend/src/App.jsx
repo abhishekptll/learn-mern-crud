@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import Home from "./pages/Home";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
+import UserDashboard from "./Pages/UserDashboard";
 
 const App=()=>{
   return(
@@ -15,7 +16,10 @@ const App=()=>{
          <Route path="registration" element={<Registration/>}/>
          <Route path="login" element={<Login/>} />
         </Route>
+        <Route path="/dashboard" element={<UserDashboard />} />
       </Routes>
+
+     
     </BrowserRouter>   
     </>
   )

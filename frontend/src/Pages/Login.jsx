@@ -4,9 +4,11 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import BackendUrl from '../utils/BackendUrl';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [input, setInput] = useState({});
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -20,6 +22,14 @@ const Login = () => {
     let api = `${BackendUrl}user/login`;
     const response = await axios.post(api, input);
     console.log(response);
+    if (response.status === 202) {
+       localStorage.setItem("username", response.data.user.name);
+       localStorage.setItem("useremail", response.data.user.email);
+      
+      alert(`welcome  ${ response.data.user.name} your id is  ${ response.data.user.email} ` );
+      navigate("/dashboard");
+    } 
+    console.log(response.data.user.email);
   };
 
   return (
