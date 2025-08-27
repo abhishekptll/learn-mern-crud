@@ -1,25 +1,30 @@
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+const UserDashboard = () => {
+  const navigate = useNavigate();
 
-function UserDashboard() {
-    const navigate = useNavigate();
-    const logout=()=>{
-        localStorage.clear();
-        navigate("/login");
+  const logout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
+  useEffect(() => {
+    if (!localStorage.getItem("username")) {
+      navigate("/login");
     }
-    useEffect(()=>{
-        if(!localStorage.getItem("username")){
-            navigate("/login");
-        }
-    })
-  return (
-     <>
-     <h1>welcome to user dashbord</h1>
-     <div> welcome : {localStorage.getItem("username")} email : {localStorage.getItem("useremail")}</div>
-     <a href="#" onClick={logout}>Logout</a>
-     </>
-  )
-}
+  }, [navigate]);
 
-export default UserDashboard
+  return (
+    <>
+      <h1> Welcome To User Dashboard</h1>
+      <div style={{ backgroundColor: "lightblue", padding: "20px" }}>
+        Welcome : {localStorage.getItem("username")} | Email :{" "}
+        {localStorage.getItem("useremail")}{" "}
+        <button onClick={logout}>Logout</button>
+      </div>
+    </>
+  );
+};
+
+export default UserDashboard;
